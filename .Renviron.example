@@ -1,0 +1,5 @@
+# Template only. Copy to .Renviron and fill in.
+# Do not put real passwords here. Do not commit .Renviron.
+
+AACT_USER=
+AACT_PASSWORD=

@@ -30,14 +30,15 @@ mamba activate species-gap
 
 ```text
 species-gap/
-├─ environment.yml     # mamba env (R, AACT packages, ggplot2)
+├─ environment.yml     # mamba env (R, AACT, ChEMBL, ggplot2)
 ├─ .Renviron.example   # AACT username/password template (not secrets)
 ├─ data/
 │  ├─ raw/             # Downloaded source data
 │  └─ processed/       # Processed data for analysis
 ├─ analysis/
 │  ├─ target_mining/
-│  │  └─ 01_aact/      # AACT probe and extract
+│  │  ├─ 01_aact/      # AACT probe and extract
+│  │  └─ 02_chembl/    # ChEMBL probe and extract
 │  ├─ structural_gap/
 │  ├─ genomic_context/
 │  ├─ network_gap/
@@ -55,8 +56,9 @@ species-gap/
 
 ## Current Tasks
 
-- [x] Local R environment via `environment.yml` (r-base, r-dbi, r-rpostgres, r-ggplot2).
+- [x] Local R environment via `environment.yml` (r-base, r-dbi, r-rpostgres, r-rsqlite, r-ggplot2).
 - [x] Fill `.Renviron` and run `01_probe.R`.
 - [x] Run `02_extract.R` (AACT tables in `data/raw/aact/YYYYMMDD/`).
 - [x] Design the remaining target-mining pipeline.
+- [x] Run `analysis/target_mining/02_chembl/01_probe.R`, then `02_extract.R`.
 - [ ] Create the initial R Shiny interface.

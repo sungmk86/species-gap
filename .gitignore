@@ -25,6 +25,9 @@ renv/staging/
 # Large or generated research data
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/opentargets/
+data/raw/opentargets/*
+!data/raw/opentargets/20261105/
 data/processed/*
 !data/processed/.gitkeep
 outputs/*

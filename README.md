@@ -62,5 +62,5 @@ species-gap/
 - [x] Run `02_extract.R` (AACT tables in `data/raw/aact/YYYYMMDD/`).
 - [x] Design the remaining target-mining pipeline.
 - [x] Run `analysis/target_mining/02_chembl/01_probe.R`, then `02_extract.R`.
-- [ ] Update the env and run `analysis/target_mining/03_opentargets/01_probe.R`, then `02_extract.R`.
+- [x] Update the env and run `analysis/target_mining/03_opentargets/01_probe.R`, then `02_extract.R`. The 26.06 snapshot is in `data/raw/opentargets/20261105/`.
 - [ ] Create the initial R Shiny interface.

@@ -1,0 +1,98 @@
+dataset	column_index	column_name	arrow_type
+disease	1	id	large_string
+disease	2	code	large_string
+disease	3	name	large_string
+disease	4	description	large_string
+disease	5	dbXRefs	large_list<element: large_string>
+disease	6	parents	large_list<element: large_string>
+disease	7	exactSynonyms	large_list<element: large_string>
+disease	8	relatedSynonyms	large_list<element: large_string>
+disease	9	narrowSynonyms	large_list<element: large_string>
+disease	10	broadSynonyms	large_list<element: large_string>
+disease	11	obsoleteTerms	large_list<element: large_string>
+disease	12	obsoleteXRefs	large_list<element: large_string>
+disease	13	children	large_list<element: large_string>
+disease	14	ancestors	large_list<element: large_string>
+disease	15	therapeuticAreas	large_list<element: large_string>
+disease	16	descendants	large_list<element: large_string>
+disease	17	ontology	struct<isTherapeuticArea: bool, leaf: bool, sources: struct<url: large_string, name: large_string>>
+disease	18	synonyms	struct<hasExactSynonym: large_list<element: large_string>, hasRelatedSynonym: large_list<element: large_string>, hasNarrowSynonym: large_list<element: large_string>, hasBroadSynonym: large_list<element: large_string>>
+drug_molecule	1	id	string
+drug_molecule	2	canonicalSmiles	string
+drug_molecule	3	inchiKey	string
+drug_molecule	4	molblock	string
+drug_molecule	5	drugType	string
+drug_molecule	6	name	string
+drug_molecule	7	parentId	string
+drug_molecule	8	synonyms	list<element: struct<label: string, source: string>>
+drug_molecule	9	tradeNames	list<element: struct<label: string, source: string>>
+drug_molecule	10	crossReferences	list<element: struct<source: string, ids: list<element: string>>>
+drug_molecule	11	childChemblIds	list<element: string>
+drug_molecule	12	maximumClinicalStage	string
+drug_molecule	13	description	string
+clinical_report	1	id	large_string
+clinical_report	2	clinicalStage	large_string
+clinical_report	3	type	large_string
+clinical_report	4	source	large_string
+clinical_report	5	drugs	large_list<element: struct<drugFromSource: large_string, drugId: large_string>>
+clinical_report	6	trialDescription	large_string
+clinical_report	7	countries	large_list<element: large_string>
+clinical_report	8	phaseFromSource	large_string
+clinical_report	9	trialOfficialTitle	large_string
+clinical_report	10	diseases	large_list<element: struct<diseaseFromSource: large_string, diseaseId: large_string>>
+clinical_report	11	trialNumberOfArms	int32
+clinical_report	12	hasExpertReview	bool
+clinical_report	13	trialOverallStatus	large_string
+clinical_report	14	year	int32
+clinical_report	15	trialStopReasonCategories	large_list<element: large_string>
+clinical_report	16	trialLiterature	large_list<element: large_string>
+clinical_report	17	sideEffects	large_list<element: struct<diseaseId: large_string, diseaseFromSource: large_string>>
+clinical_report	18	trialPhase	large_string
+clinical_report	19	trialWhyStopped	large_string
+clinical_report	20	url	large_string
+clinical_report	21	trialStudyType	large_string
+clinical_report	22	qualityControls	large_list<element: large_string>
+clinical_report	23	trialPrimaryPurpose	large_string
+clinical_report	24	trialStartDate	date32[day]
+clinical_report	25	title	large_string
+clinical_target	1	id	large_string
+clinical_target	2	drugId	large_string
+clinical_target	3	targetId	large_string
+clinical_target	4	diseases	large_list<element: struct<diseaseFromSource: large_string, diseaseId: large_string>>
+clinical_target	5	clinicalReportIds	large_list<element: large_string>
+clinical_target	6	maxClinicalStage	large_string
+clinical_indication	1	id	large_string
+clinical_indication	2	maxClinicalStage	large_string
+clinical_indication	3	clinicalReportIds	large_list<element: large_string>
+clinical_indication	4	drugId	large_string
+clinical_indication	5	diseaseId	large_string
+target	1	id	string
+target	2	approvedSymbol	string
+target	3	biotype	string
+target	4	alternativeGenes	list<element: string>
+target	5	genomicLocation	struct<chromosome: string, start: int64, end: int64, strand: int32>
+target	6	transcriptIds	list<element: string>
+target	7	canonicalExons	list<element: string>
+target	8	transcripts	list<element: struct<transcriptId: string, biotype: string, uniprotId: string, isUniprotReviewed: bool, translationId: string, alphafoldId: string, uniprotIsoformId: string, isEnsemblCanonical: bool>>
+target	9	canonicalTranscript	struct<id: string, chromosome: string, start: int64, end: int64, strand: string>
+target	10	approvedName	string
+target	11	go	list<element: struct<id: string, source: string, evidence: string, aspect: string, geneProduct: string, ecoId: string> not null>
+target	12	hallmarks	struct<attributes: list<element: struct<pmid: int64, description: string, name: string> not null>, cancerHallmarks: list<element: struct<pmid: int64, description: string, impact: string, label: string> not null>>
+target	13	synonyms	list<element: struct<label: string, source: string>>
+target	14	symbolSynonyms	list<element: struct<label: string, source: string>>
+target	15	nameSynonyms	list<element: struct<label: string, source: string>>
+target	16	functionDescriptions	list<element: string>
+target	17	subcellularLocations	list<element: struct<location: string, source: string not null, termSL: string, labelSL: string, targetModifier: string> not null>
+target	18	targetClass	list<element: struct<id: int64, label: string, level: string not null> not null>
+target	19	obsoleteSymbols	list<element: struct<label: string, source: string>>
+target	20	obsoleteNames	list<element: struct<label: string, source: string>>
+target	21	constraint	list<element: struct<constraintType: string not null, score: float, exp: float, obs: int32, oe: float, oeLower: float, oeUpper: float, upperRank: int32, upperBin: int32, upperBin6: int32> not null>
+target	22	tep	struct<targetFromSourceId: string, description: string, therapeuticArea: string, url: string>
+target	23	proteinIds	list<element: struct<id: string, source: string> not null>
+target	24	dbXrefs	list<element: struct<id: string, source: string>>
+target	25	chemicalProbes	list<element: struct<targetFromSourceId: string, id: string, drugFromSourceId: string, drugId: string, mechanismOfAction: list<element: string>, origin: list<element: string>, control: string, isHighQuality: bool, probesDrugsScore: double, probeMinerScore: double, scoreInCells: double, scoreInOrganisms: double, urls: list<element: struct<niceName: string, url: string>>> not null>
+target	26	homologues	list<element: struct<speciesId: string, speciesName: string, homologyType: string, targetGeneId: string, isHighConfidence: string, targetGeneSymbol: string, queryPercentageIdentity: double, targetPercentageIdentity: double, priority: int32> not null>
+target	27	tractability	list<element: struct<modality: string not null, id: string not null, value: bool not null> not null>
+target	28	safetyLiabilities	list<element: struct<event: string, eventId: string, effects: list<element: struct<direction: string, dosing: string>>, biosamples: list<element: struct<tissueLabel: string, tissueId: string, cellLabel: string, cellFormat: string, cellId: string>>, datasource: string, literature: string, url: string, studies: list<element: struct<description: string, name: string, type: string>>> not null>
+target	29	pathways	list<element: struct<pathwayId: string, pathway: string, topLevelTerm: string> not null>
+target	30	tss	int64

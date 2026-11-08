@@ -1,0 +1,9 @@
+dataset	file	rows	columns	bytes	path	release	downloaded_at_utc
+disease	disease.parquet	47080	18	7150787	data/raw/opentargets/20261105/disease/disease.parquet	26.06	2026-11-05T10:43:22Z
+drug_molecule	part-00000-5581d2c3-048b-4097-934f-51cec06d7ff0-c000.snappy.parquet	22407	13	14647216	data/raw/opentargets/20261105/drug_molecule/part-00000-5581d2c3-048b-4097-934f-51cec06d7ff0-c000.snappy.parquet	26.06	2026-11-05T10:43:22Z
+clinical_report	clinical_report.parquet	289955	25	74437645	data/raw/opentargets/20261105/clinical_report/clinical_report.parquet	26.06	2026-11-05T10:43:22Z
+clinical_target	clinical_target.parquet	13307	6	2834958	data/raw/opentargets/20261105/clinical_target/clinical_target.parquet	26.06	2026-11-05T10:43:22Z
+clinical_indication	clinical_indication.parquet	86468	5	4970713	data/raw/opentargets/20261105/clinical_indication/clinical_indication.parquet	26.06	2026-11-05T10:43:22Z
+target	part-00000-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26353	30	30365704	data/raw/opentargets/20261105/target/part-00000-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26.06	2026-11-05T10:43:22Z
+target	part-00001-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26245	30	29725904	data/raw/opentargets/20261105/target/part-00001-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26.06	2026-11-05T10:43:22Z
+target	part-00002-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26093	30	29839950	data/raw/opentargets/20261105/target/part-00002-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet	26.06	2026-11-05T10:43:22Z

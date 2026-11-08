@@ -62,6 +62,8 @@ mamba run -n species-gap Rscript analysis/target_mining/03_opentargets/02_extrac
 - Folder `data/raw/opentargets/YYYYMMDD/` with the same parquet files:
   disease, drug_molecule, clinical_report, clinical_target,
   clinical_indication, target.
+- The `20261105` snapshot is committed. `_cache` is the same bytes
+  kept locally and stays untracked.
 - `manifest.tsv` with one row per parquet file: row count,
   top-level column count, size, and the release.
 - `schema.tsv` with one row per top-level column and its Arrow type.

@@ -46,19 +46,3 @@ species-gap/
 ├─ web/                # R Shiny web application
 └─ outputs/            # Figures, reports, manuscripts, and releases
 ```
-
-## Working Principles
-
-- Do not modify source data in `data/raw`.
-- Store reproducible analysis code in `analysis`.
-- Store generated results in `outputs`.
-- Do not commit personal information or Brain Pool administrative documents to this repository.
-
-## Current Tasks
-
-- [x] Local R environment via `environment.yml` (r-base, r-dbi, r-rpostgres, r-rsqlite, r-ggplot2).
-- [x] Fill `.Renviron` and run `01_probe.R`.
-- [x] Run `02_extract.R` (AACT tables in `data/raw/aact/YYYYMMDD/`).
-- [x] Design the remaining target-mining pipeline.
-- [x] Run `analysis/target_mining/02_chembl/01_probe.R`, then `02_extract.R`.
-- [ ] Create the initial R Shiny interface.

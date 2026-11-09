@@ -59,9 +59,3 @@ mamba run -n species-gap Rscript analysis/target_mining/02_chembl/02_extract.R
   drug_mechanism.
 - `manifest.tsv` with row counts, file sizes, and the ChEMBL release.
 - No filtering. Do not edit files under `data/raw`.
-
-`drug_mechanism` has `tid`, not `target_chembl_id`.
-`target_chembl_id` is `target_dictionary.chembl_id`.
-The later mouse-success column is not in this download.
-
-This step does not build a case-set.

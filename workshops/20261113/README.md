@@ -1,162 +1,175 @@
-# 2026-11-13 — Rosetta practical 1: score one structure
+# 2026-11-13 로제타 실습 1: 점수 하나 보기
 
-First lab workshop. Two hours. Everyone leaves with one Rosetta score
-on screen. No local install.
+시간은 2시간이다. 끝날 때 각자 화면에 숫자 두 개가 나오면 성공이다.
+하나는 아미노산 개수, 하나는 로제타 점수다.
 
-This folder is the session plan and the commands to run. Do not add
-Brain Pool forms, budgets, or personal data here.
+설치는 실습 중에 하지 않는다. `imac1`이라는 공용 컴퓨터에 미리 해 둔다.
+당일에는 그 설치에 어떤 명령을 쳤는지만 함께 본다.
 
-## Who and what
+이 폴더에는 실습 계획만 둔다. 신청서, 예산, 비밀번호, 개인 정보는 적지 않는다.
 
-Lab members who have not run Rosetta. A laptop with Chrome is enough.
-Windows, Mac, and Linux all use the same Colab notebook.
+## 오늘 하는 일
 
-Rosetta does four jobs. This session does only the first.
+로제타는 네 가지 일을 한다. 오늘은 첫 번째만 한다.
 
-| Job | What it answers | This session |
+| 하는 일 | 쉬운 뜻 | 오늘 |
 | --- | --- | --- |
-| Score | How favorable is this structure under the Rosetta energy function? | Yes |
-| FastRelax | Can a short refinement lower that score? | One optional model, if install finished |
-| Point-mutation ΔΔG | Did one amino-acid change help or hurt? | No |
-| Docking or loop modeling | Where do two molecules sit, or how does a missing loop look? | No |
+| 점수 보기 | 이 단백질 모양이 계산 안에서 얼마나 안정한지 숫자로 본다 | 한다 |
+| 다듬기 (FastRelax) | 원자 위치를 살짝 옮겨 점수를 낮춘다 | 대표 한 명만, 시간이 남을 때 |
+| 글자 하나 바꾸기 | 아미노산 하나를 바꿨을 때 점수가 얼마나 달라지는지 본다 | 안 한다 |
+| 붙는 위치 찾기 | 두 분자가 어디에 붙는지 후보를 만든다 | 안 한다 |
 
-The score is in Rosetta energy units (REU). A lower number is more
-favorable inside that calculation. It is not a measured ΔG. Compare
-scores only when the protein, the score function, and the protocol are
-the same.
+점수는 실험실에서 잰 값이 아니다. 같은 단백질을, 같은 방법으로 계산한 숫자끼리만 비교한다.
 
-## Why this protein
+실습 파일은 유비퀴틴이다. PDB 파일 이름은 `1UBQ`다. 아미노산이 76개라서 오래 걸리지 않는다.
 
-Live exercise: ubiquitin, PDB `1UBQ`, 76 residues. It downloads in
-seconds and scores in seconds, so the group can finish together.
+## 시간
 
-Optional second file, same commands: mouse furin ectodomain, PDB
-`1P8J`. That is the lab's enzyme project, not the human construct with
-the MBP tag and the A408–S421 loop deletion. Do not compare the `1UBQ`
-total score with the `1P8J` total score. They are different proteins.
-
-## Schedule
-
-| Time | Block | Done when |
+| 시간 | 하는 일 | 여기까지 되면 통과 |
 | --- | --- | --- |
-| 0:00–0:15 | The four jobs above, and what a score is not | Someone can say why two total scores from different proteins are not ranked against each other |
-| 0:15–0:45 | Colab install | `import pyrosetta` runs |
-| 0:45–1:20 | Download `1UBQ` and print residue count plus score | Every person has a number |
-| 1:20–1:40 | Optional FastRelax, one model | A second PDB and a second score exist |
-| 1:40–2:00 | Read the two scores. Preview the next session | The group can name the next furin question |
+| 0:00–0:15 | 점수란 무엇인지 듣는다 | 다른 단백질의 총점끼리는 순위를 매기지 않는다고 말할 수 있다 |
+| 0:15–0:30 | 설치 기록을 함께 본다. 다시 설치하지는 않는다 | 설치가 `imac1`에 이미 끝났다는 것을 안다 |
+| 0:30–1:00 | 각자 노트북에서 `imac1`에 접속한다 | `ssh` 접속 뒤 이름 프롬프트가 보인다 |
+| 1:00–1:40 | `1UBQ`를 받아 점수를 출력한다 | 화면에 `residues 76`과 점수 숫자가 나온다 |
+| 1:40–2:00 | 숫자를 적고, 다음 시간을 듣는다 | 세 줄을 노트에 남긴다. 잔기 수, 점수, 날짜 |
 
-If the install is still running at 0:45, skip FastRelax. The required
-result is the `1UBQ` score.
+설치 확인이 1시를 넘기면 다듬기는 하지 않는다. 오늘 꼭 필요한 결과는 `1UBQ` 점수다.
 
-## Colab setup
+## 각자 노트북에서 imac1에 들어오려면
 
-1. Open Chrome.
-2. Open a new notebook at https://colab.research.google.com/
-3. Paste the install cell and run it. The official PyRosetta teaching
-   notebook sometimes has parentheses after `pyrosettacolabsetup`.
-   Do not type those parentheses. Use the cell below.
+계산은 `imac1` 안에서 돌아간다. 노트북은 그 컴퓨터에 글을 보내고 화면을 받아 오는 창이다.
 
-Official teaching notebook, for reference only:
+각자 준비할 것은 네 가지다.
 
-https://colab.research.google.com/github/RosettaCommons/PyRosetta.notebooks/blob/master/notebooks/01.00-How-to-Get-Started.ipynb
+1. 노트북. 윈도우여도 되고 맥이어도 된다.
+2. `imac1`과 같은 연구실 와이파이, 또는 같은 랜선 네트워크. 집에서는 이 컴퓨터가 보이지 않는다.
+3. 글자 창. 맥은 `터미널` 앱이다. 윈도우는 `PowerShell`이다. 둘 다 `ssh`가 이미 들어 있다. 새로 깔지 않는다.
+4. 담당자가 알려 주는 세 가지. 주소, 아이디, 비밀번호. 비밀번호는 이 문서에 적지 않는다.
 
-Install cell:
+주소는 컴퓨터 이름일 수도 있고, `192.168`로 시작하는 번호일 수도 있다. 당일 칠판에 적힌 것을 그대로 친다.
 
-```python
-!pip install pyrosetta --find-links https://west.rosettacommons.org/pyrosetta/quarterly/release
+맥 터미널 또는 윈도우 PowerShell에 이 한 줄을 친다. `내아이디`와 `주소`만 바꾼다.
+
+```text
+ssh 내아이디@주소
 ```
 
-PyRosetta is free for academic non-commercial use. A paid license is
-required for company work, including fee-for-service work inside a
-university. Restarting the Colab runtime deletes the install. Run the
-install cell again.
+처음 한 번은 `Are you sure you want to continue connecting?`이라고 묻는다. `yes`를 치고 Enter를 누른다. 그다음 비밀번호를 친다. 칠 때 화면에 글자가 안 보여도 정상이다. Enter를 누른다.
 
-Do not run `pip install pyrosetta` in Windows PowerShell. PyRosetta on
-Windows is supported through Ubuntu on WSL, or through Colab. This
-session uses Colab so nobody needs that setup.
+들어왔으면 프롬프트가 `imac1` 쪽으로 바뀐다. 여기서부터 치는 명령은 노트북이 아니라 `imac1`에서 실행된다.
 
-## Exercise
+`imac1` 쪽에는 실습 전에 이것들이 켜져 있어야 한다. 참가자가 하는 일이 아니다.
 
-Paste this as the second cell. It downloads `1UBQ`, scores it, and
-prints the residue count beside the score.
+- 전원이 켜져 있고, 우분투 화면이 떠 있다.
+- SSH 서버가 켜져 있다. 밖에서 `ssh`로 들어올 수 있다.
+- 사람마다 계정이 하나씩 있다. 계정은 담당자에게 받는다.
+- 아래 설치 기록의 파이썬으로 `import pyrosetta`가 된다.
+
+각자 다른 아이디로 들어온다. 같은 아이디로 여러 명이 들어가면 파일을 서로 덮어쓴다.
+
+## 설치 기록
+
+이 명령은 `imac1`에 미리 한 번만 친 것이다. 실습 시간에 따라 치지 않는다. 화면으로 어떤 순서였는지만 본다.
+
+우분투 종류와 CPU를 먼저 확인했다.
+
+```text
+lsb_release -a
+uname -m
+```
+
+`uname -m` 결과가 `x86_64`여야 지금 받는 PyRosetta 파일이 맞다.
+
+그다음 공용 폴더에 파이썬 환경을 만들고 PyRosetta를 넣었다.
+
+```text
+sudo apt update
+sudo apt install -y python3-pip python3-venv openssh-server
+sudo python3 -m venv /opt/pyrosetta
+sudo /opt/pyrosetta/bin/pip install -U pip
+sudo /opt/pyrosetta/bin/pip install pyrosetta --find-links https://west.rosettacommons.org/pyrosetta/quarterly/release
+sudo chmod -R a+rX /opt/pyrosetta
+```
+
+대학에서 연구로 쓰는 것은 무료다. 회사 일은 유료 허락이 필요하다.
+
+설치가 되었는지 확인하는 명령이다. 실습 시작 때 각자 한 번씩 쳐 본다. 설치를 다시 하지는 않는다.
+
+```text
+/opt/pyrosetta/bin/python -c "import pyrosetta; pyrosetta.init('-mute all'); print('ok')"
+```
+
+`ok`가 나오면 다음 실습으로 간다.
+
+## 실습
+
+`imac1`에 들어온 뒤, 내 폴더를 만들고 그 안으로 들어간다.
+
+```text
+mkdir -p ~/workshop-20261113
+cd ~/workshop-20261113
+```
+
+유비퀴틴 파일을 받는다.
+
+```text
+wget https://files.rcsb.org/download/1UBQ.pdb -O 1ubq.pdb
+```
+
+점수를 계산한다.
 
 ```python
-import urllib.request
+/opt/pyrosetta/bin/python - <<'PY'
 import pyrosetta
-
-urllib.request.urlretrieve(
-    "https://files.rcsb.org/download/1UBQ.pdb", "1ubq.pdb"
-)
 pyrosetta.init("-mute all")
 pose = pyrosetta.pose_from_pdb("1ubq.pdb")
 scorefxn = pyrosetta.get_score_function()
 print("residues", pose.total_residue())
 print("score_REU", scorefxn(pose))
+print("version", pyrosetta.version())
+PY
 ```
 
-Expected result: `residues 76`, then one score. The score will not
-match a classmate's score if the PyRosetta build differs. Record the
-build too:
+나오는 세 줄을 노트에 적는다.
+
+- `residues` 는 76이어야 한다.
+- `score_REU` 는 점수다.
+- `version` 은 설치된 PyRosetta 판 번호다.
+
+친구와 점수가 조금 달라도, 판 번호가 같으면 같은 계산이다. 판 번호가 다르면 숫자를 한 표에 섞지 않는다.
+
+다듬기는 대표 한 명만 한다. 오래된 컴퓨터라서 여러 명이 동시에 하면 멈춘 것처럼 보인다.
 
 ```python
+/opt/pyrosetta/bin/python - <<'PY'
 import pyrosetta
-print(pyrosetta.version())
-```
-
-Write down three lines: residue count, score, PyRosetta version.
-
-Optional FastRelax cell. Run it only after the score cell works.
-`1UBQ` is small enough for one model.
-
-```python
 from pyrosetta.rosetta.protocols.relax import FastRelax
-
+pyrosetta.init("-mute all")
+pose = pyrosetta.pose_from_pdb("1ubq.pdb")
+scorefxn = pyrosetta.get_score_function()
 relax = FastRelax()
 relax.set_scorefxn(scorefxn)
 relax.apply(pose)
 pose.dump_pdb("1ubq_relax.pdb")
-print("residues", pose.total_residue())
 print("score_REU_after_relax", scorefxn(pose))
+PY
 ```
 
-Download `1ubq_relax.pdb` from the Colab file browser before closing
-the tab. Colab deletes the file with the runtime.
+## 안 될 때
 
-Optional same-day check, same cells, with `1P8J.pdb` and
-`https://files.rcsb.org/download/1P8J.pdb`. Record it in a second row.
-Do not subtract it from the ubiquitin score.
-
-## If it fails
-
-| What you see | What to do |
+| 보이는 것 | 이렇게 한다 |
 | --- | --- |
-| `No matching distribution` on pip | Confirm the notebook runtime is Python 3, then rerun the install cell. Do not switch to PowerShell |
-| Install cell has `pyrosettacolabsetup()` | Delete the parentheses |
-| Runtime restarted and `import pyrosetta` fails | Rerun the install cell |
-| Score cell cannot find the PDB | The download cell and the score cell must use the same filename |
-| Two people want to rank different proteins by the total score | Stop. Compare per-residue only as a rough note, and only after writing down the residue counts |
+| `Could not resolve hostname` | 칠판의 주소를 다시 본다. 연구실 와이파이에 붙어 있는지 확인한다 |
+| `Connection refused` 또는 오래 기다림 | `imac1` 전원과 SSH 서버를 담당자에게 확인한다 |
+| `Permission denied` | 아이디와 비밀번호를 다시 받는다. 비밀번호는 쳐도 화면에 안 나온다 |
+| `No module named pyrosetta` | `/opt/pyrosetta/bin/python` 으로 실행했는지 확인한다. `python` 만 치면 다른 파이썬이 열린다 |
+| `1ubq.pdb` 를 못 찾음 | `cd ~/workshop-20261113` 을 먼저 쳤는지 확인한다 |
+| 명령이 한참 멈춤 | 점수 계산은 짧다. 다듬기를 여러 명이 동시에 돌리고 있으면 그것 때문이다 |
 
-## After the session
+나갈 때는 `exit` 를 친다.
 
-Each person keeps three lines for `1UBQ`: residues, score, version.
-Anyone who finished `1P8J` keeps a second row and does not rank the two
-totals.
+## 다음 시간
 
-Next session, separate folder: build the furin ectodomain twice in
-PyRosetta, once intact and once without A408–S421, relax each once,
-and compare those two scores. That pair is the same protein and the
-same protocol, so the comparison is allowed. Gene synthesis and
-Addgene orders are not part of that session.
+다음에도 `imac1`에 접속한다. Furin을 두 개 만든다. 하나는 그대로 두고, 하나는 A408부터 S421까지 루프를 뺀다. 둘을 같은 방법으로 한 번씩 다듬고, 그 두 점수만 비교한다.
 
-## Local install, not used today
-
-Use this only after the same PDB will be scored many times, or when
-the structure cannot be uploaded. On Mac or Linux:
-
-```text
-pip install pyrosetta --find-links https://west.rosettacommons.org/pyrosetta/quarterly/release
-```
-
-The quarterly wheel is the reproducible build. `pyrosetta-installer`
-tracks weekly builds that are not kept. On Windows, run that command
-inside Ubuntu on WSL, not in PowerShell.
+애드진 주문과 DNA 합성은 이 실습에 넣지 않는다.

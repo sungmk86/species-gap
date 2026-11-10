@@ -6,4 +6,4 @@ Put session notes, notebooks, and small exercises in dated subfolders. Do not pu
 
 ## Sessions
 
-- [2026-11-13 Rosetta practical 1](20261113/README.md) — score one PDB in Colab. No local install.
+- [2026-11-13 Rosetta practical 1](20261113/README.md) — Korean session plan. Score one PDB on the lab Ubuntu machine `imac1`. The install is shown, not repeated.

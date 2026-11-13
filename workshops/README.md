@@ -6,8 +6,6 @@
 | 2026-12-04 | GitHub | [20261204.md](notes/20261204.md) |
 | 2026-12-18 | Rosetta | [20261218.md](notes/20261218.md) |
 
-노트 파일은 `workshops/README.md`가 아니라 `workshops/notes/`에 있다.
-
 # 2027 Workshop
 
 | 날짜 | 파일 | 한 줄 |

@@ -4,6 +4,7 @@
 datasets <- c(
   "disease",
   "drug_molecule",
+  "drug_warning",
   "clinical_report",
   "clinical_target",
   "clinical_indication",

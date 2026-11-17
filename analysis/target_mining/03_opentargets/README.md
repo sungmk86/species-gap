@@ -65,7 +65,7 @@ Unset these variables to return to the latest release and all datasets.
 `02_extract.R`
 
 - Original Parquet files under `data/raw/opentargets/YYYYMMDD/`.
-- Datasets: `disease`, `drug_molecule`, `clinical_report`,
+- Datasets: `disease`, `drug_molecule`, `drug_warning`, `clinical_report`,
   `clinical_target`, `clinical_indication`, and `target`.
 - `manifest.tsv` with row counts, file sizes, and release.
 - `schema.tsv` with source column names and Parquet types.
@@ -90,5 +90,9 @@ described through `known_drug`. It provides `drugId`, `targetId`,
 
 The `target` dataset maps the Ensembl `targetId` to protein identifiers,
 including UniProt accessions.
+
+`drug_warning` holds ChEMBL withdrawal and black-box rows; `warningType`
+marks a withdrawal, `toxicityClass` is the short class, `description` is
+the sentence, `chemblIds` links the drug.
 
 Do not edit files under `data/raw`.

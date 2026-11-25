@@ -14,7 +14,7 @@ mamba env create -f environment.yml
 mamba activate species-gap
 ```
 
-`environment.yml` is the shared package list. Recreate the same R version, database packages, and ggplot2 on another machine with that file. Do not use `.env` for packages.
+`environment.yml` is the shared package list. Recreate the same R version, database packages, ggplot2, arrow (Parquet), and openssl (checksums) on another machine with that file. Do not use `.env` for packages.
 
 3. Copy `.Renviron.example` to `.Renviron` and fill `AACT_USER` and `AACT_PASSWORD`. Do not commit `.Renviron`.
 
@@ -30,7 +30,7 @@ mamba activate species-gap
 
 ```text
 species-gap/
-├─ environment.yml     # mamba env (R, AACT, ChEMBL, ggplot2)
+├─ environment.yml     # mamba env (R, AACT, ChEMBL, Open Targets, ggplot2)
 ├─ .Renviron.example   # AACT username/password template (not secrets)
 ├─ data/
 │  ├─ raw/             # Downloaded source data
@@ -38,7 +38,8 @@ species-gap/
 ├─ analysis/
 │  ├─ target_mining/
 │  │  ├─ 01_aact/      # AACT probe and extract
-│  │  └─ 02_chembl/    # ChEMBL probe and extract
+│  │  ├─ 02_chembl/    # ChEMBL probe and extract
+│  │  └─ 03_opentargets/ # Open Targets download, checksum, and row counts
 │  ├─ structural_gap/
 │  ├─ genomic_context/
 │  ├─ network_gap/

@@ -13,3 +13,5 @@ dependencies:
   - r-rpostgres=1.4.10
   - r-rsqlite=3.53.3
   - r-ggplot2=4.0.3
+  - r-arrow=25.0.1
+  - r-openssl=2.6.0

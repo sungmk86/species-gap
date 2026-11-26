@@ -1,7 +1,14 @@
 # 01_aact
 
-First target-mining step: connect to AACT (Aggregate Analysis of
-ClinicalTrials.gov) and confirm that `ctgov.studies` is readable.
+First target-mining step: get AACT (Aggregate Analysis of
+ClinicalTrials.gov) tables.
+
+There are two ways:
+
+- `03_snapshot.R` (use this for the analysis): reads a dated flat-file
+  snapshot. The same snapshot file always gives the same tables.
+- `02_extract.R`: reads the live cloud database. AACT updates it every
+  day, so the result depends on the day it runs.
 
 From 2026-09-15 an AACT account is required.
 
@@ -21,7 +28,34 @@ mamba activate species-gap
 Packages for this step (`r-base`, `r-dbi`, `r-rpostgres`, `r-ggplot2`)
 are pinned in `environment.yml`. Do not `install.packages()` for them.
 
-## Run
+## Snapshot (reproducible)
+
+The snapshot download needs an AACT login, so download it by hand once:
+
+1. Sign in at https://aact.ctti-clinicaltrials.org
+2. Snapshots -> History -> 2026 -> Flat Text Files ->
+   November 1, 2026 -> Download (`20261101_export_ctgov.zip`, 2.4 GB).
+3. Put the zip, unrenamed, in `data/raw/aact/_cache/`.
+
+Then:
+
+```text
+mamba run -n species-gap Rscript analysis/target_mining/01_aact/03_snapshot.R
+```
+
+AACT does not publish checksums. The script checks the zip against the
+SHA256 recorded in it
+(`d0cbbea225d1c300fb9c5c1814ab51e9b1493113ba9dbcf5cbd05aebafa0d9d4`)
+and stops if it differs. It writes `data/raw/aact/snapshot_20261101/`
+with the same seven tables as `02_extract.R` and a `manifest.tsv`
+(rows, columns, md5 of each `.rds`, snapshot SHA256). All columns are
+text; empty fields are `NA`. The zip keeps all 49 tables for later.
+
+Snapshot 2026-11-01 row counts: studies 609,544; interventions
+1,031,111; conditions 1,097,935; browse_conditions 4,415,195;
+browse_interventions 2,572,890; sponsors 971,165; designs 604,742.
+
+## Live database
 
 From the repository root, with `species-gap` active:
 
